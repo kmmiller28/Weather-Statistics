@@ -1,0 +1,104 @@
+//Kimberly White
+//CS-2255
+//Week 3 Assignment-Weather Statistics
+
+
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+
+using namespace std;
+
+struct WeatherData
+{
+	double Rainfall;
+	double High_Temp;
+	double Low_Temp;
+	double Avg_Temp;
+};
+
+int main()
+{
+	// Create an array of WeatherInfo structures
+	const int NUM_MONTHS = 12;			//Number of Months
+	WeatherData months[NUM_MONTHS];     //Array of 12 months
+	int index = 0;                      //Loop counter
+	double annualRainfall = 0.0, averageRainfall;
+	double High_Temp;
+	double Low_Temp;
+
+	// Get rainfall for each month.
+	for (int index = 0; index < NUM_MONTHS; index++)
+	{
+		// Get months rainfall
+		cout << "\nEnter the rainfall in inches for month # ";
+		cout << (index + 1) << ": ";
+		cin >> months[index].Rainfall;
+		
+		if (months[index].Rainfall < 0)
+		{
+			cout << "The number you have entered is invalid." << endl;
+			cout << "Please enter an appropriate number: ";
+			cin >> months[index].Rainfall;
+		}
+
+	void calHighLow(WeatherData months[], double High_Temp, int &HighestMonth, double Low_Temp, int &LowestMonth);
+		
+	//Get high and low temp for each month
+		cout << "Enter the lowest temperature: ";
+		cin >> months[index].Low_Temp;
+		Low_Temp = months[0].Low_Temp;
+			for (int y = 0; y < 12; y++) 
+			{
+				if (months[y].Low_Temp <= Low_Temp)
+				{
+					Low_Temp = months[y].Low_Temp;
+					int LowestMonth = y + 1;
+				}
+				if (months[index].Low_Temp < 0)
+				{
+					cout << "The number you have entered is invalid." << endl;
+					cout << "Please enter and appropriate number: ";
+					cin >> months[index].Low_Temp;
+				}
+			}
+		
+		cout << "Enter the highest temperature: ";
+		cin >> months[index].High_Temp;
+		High_Temp = months[0].High_Temp;
+		for (int x = 0; x < 3; x++) 
+		{
+			if (months[index].High_Temp >= High_Temp)
+			{
+				High_Temp = months[index].High_Temp;
+				int HighestMonth = x + 1;
+			}
+			if (months[index].High_Temp < 0)
+			{
+				cout << "The number you have entered is invalid." << endl;
+				cout << "Please enter an appropriate number: ";
+				cin >> months[index].High_Temp;
+			}
+		}
+				
+		//Calculate average and annual rainfall.
+		annualRainfall += months[index].Rainfall;
+		averageRainfall = annualRainfall / 12;
+
+	}
+	
+	//Display total rainfall for year, monthly average, highest and lowest months 
+	cout << "\n\n====================Weather Statistics====================" << endl;
+	cout << "\nThe total rainfall for the year is: " << annualRainfall << " inches"
+	<< "\nThe average monthly rainfall is: " << averageRainfall << " inches";
+	cout << "\nHighest Temperature: " << months[index].High_Temp << endl;
+	cout << "Lowest Temperature: " << months[index].Low_Temp << endl;
+
+
+
+
+	system("pause");
+	cin.get();
+	return 0;
+}
